@@ -5,7 +5,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-dao_voting = "BcRfmTLCqFmTiPcXpJj8pJRNiLtj3H2hNEzpfoUsky9E"
+dao_voting = "9qkB1pcntVosURAYkTzKznGM2KuGJR5A2PmXZyBrWir1"
 
 [registry]
 url = "https://api.apr.dev"

@@ -5,7 +5,7 @@ use instructions::vote::*;
 
 pub mod instructions;
 pub mod state;
-declare_id!("BcRfmTLCqFmTiPcXpJj8pJRNiLtj3H2hNEzpfoUsky9E");
+declare_id!("9qkB1pcntVosURAYkTzKznGM2KuGJR5A2PmXZyBrWir1");
 
 #[program]
 pub mod dao_voting_program {
