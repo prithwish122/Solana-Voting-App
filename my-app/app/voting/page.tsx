@@ -4,7 +4,7 @@ import VotingList from '../components/VotingList';
 const VotingPage: FC = () => {
   return (
     <div>
-      <h1 className='text-black'>Vote on Proposals</h1>
+      {/* <h1 className='text-black'>Vote on Proposals</h1> */}
       <VotingList />
     </div>
   );

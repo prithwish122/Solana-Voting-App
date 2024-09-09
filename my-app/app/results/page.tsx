@@ -3,11 +3,11 @@ import ResultsDisplay from '../components/ResultDisplay';
 
 const ResultsPage: FC = () => {
   // Replace with actual proposal ID or logic to fetch it
-  const proposalId = 'YOUR_PROPOSAL_ID';
+  const proposalId = '9qkB1pcntVosURAYkTzKznGM2KuGJR5A2PmXZyBrWir1s';
 
   return (
     <div>
-      <h1>View Results</h1>
+      {/* <h1>View Results</h1> */}
       <ResultsDisplay proposalId={proposalId} />
     </div>
   );

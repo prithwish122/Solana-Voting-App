@@ -1,9 +1,10 @@
-"use client"
+"use client";
 import { useEffect, useState } from 'react';
 import { AnchorProvider, Program, Idl } from '@project-serum/anchor';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { useWallet } from '@solana/wallet-adapter-react';
 import idl from '../idl.json'; // Adjust this path to your IDL
+import Navbar from './Navbar'; // Ensure Navbar is properly imported
 
 const RewardDashboard = () => {
   const [rewardPoints, setRewardPoints] = useState<number>(0);
@@ -47,10 +48,17 @@ const RewardDashboard = () => {
   }, [publicKey, connected]);
 
   return (
-    <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
-    <h3 className="text-2xl font-bold mb-4">My Reward Points</h3>
-    <p className="text-gray-700">Total Points: {rewardPoints}</p>
-  </div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center" style={{ backgroundImage: 'url(https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/9d9875119512883.60b757ed32e4a.gif)' }}>
+      <Navbar />
+      <div className="relative p-12 bg-white bg-opacity-80 rounded-lg shadow-lg max-w-lg w-full backdrop-blur-md border border-gray-200">
+        <h3 className="text-3xl font-bold mb-4 text-center text-gray-800">My Reward Points</h3>
+        {loading ? (
+          <p className="text-gray-700 text-lg text-center">Loading...</p>
+        ) : (
+          <p className="text-gray-700 text-lg text-center">Total Points: {rewardPoints}</p>
+        )}
+      </div>
+    </div>
   );
 };
 

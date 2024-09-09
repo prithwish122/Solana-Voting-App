@@ -1,9 +1,10 @@
-"use client"
+"use client";
 import { useEffect, useState } from 'react';
-import { AnchorProvider, Program , Idl} from '@project-serum/anchor';
+import { AnchorProvider, Program, Idl } from '@project-serum/anchor';
 import { Connection, PublicKey } from '@solana/web3.js';
 import { useWallet } from '@solana/wallet-adapter-react';
 import idl from '../idl.json'; // Adjust this path to your IDL
+import Navbar from './Navbar'; // Ensure Navbar is properly imported
 
 const VotingList = () => {
   const [proposals, setProposals] = useState<any[]>([]);
@@ -17,7 +18,7 @@ const VotingList = () => {
         return;
       }
 
-      const connection = new Connection('https://api.mainnet-beta.solana.com', 'confirmed');
+      const connection = new Connection('https://api.devnet.solana.com/', 'confirmed');
       const provider = new AnchorProvider(connection, {
         signTransaction: async (transaction) => {
           if (!publicKey) throw new Error('Wallet not connected');
@@ -53,7 +54,7 @@ const VotingList = () => {
     }
 
     try {
-      const connection = new Connection('https://api.mainnet-beta.solana.com', 'confirmed');
+      const connection = new Connection('https://api.devnet.solana.com/', 'confirmed');
       const provider = new AnchorProvider(connection, {
         signTransaction: async (transaction) => {
           if (!publicKey) throw new Error('Wallet not connected');
@@ -66,7 +67,7 @@ const VotingList = () => {
         publicKey,
       }, { commitment: 'confirmed' });
       
-      const programId = new PublicKey('YOUR_PROGRAM_ID'); // Replace with your program ID
+      const programId = new PublicKey('9qkB1pcntVosURAYkTzKznGM2KuGJR5A2PmXZyBrWir1'); // Replace with your program ID
       const program = new Program(idl as Idl, programId, provider);
 
       // Assuming `vote` is the method in your smart contract
@@ -84,51 +85,35 @@ const VotingList = () => {
   };
 
   return (
-    // <div>
-    //   {loading ? (
-    //     <p>Loading proposals...</p>
-    //   ) : proposals.length > 0 ? (
-    //     proposals.map((proposal) => (
-    //       <div key={proposal.publicKey.toString()} className="proposal-card">
-    //         <h3>{proposal.account.title}</h3>
-    //         <p>{proposal.account.description}</p>
-    //         <div>
-    //           {proposal.account.options.map((option: string, index: number) => (
-    //             <button key={index} className="btn-primary" onClick={() => handleVote(proposal.publicKey, option)}>
-    //               Vote for {option}
-    //             </button>
-    //           ))}
-    //         </div>
-    //       </div>
-    //     ))
-    //   ) : (
-    //     <p>No proposals found.</p>
-    //   )}
-    // </div>
-
-
-    <div className="space-y-4">
-      {proposals.length > 0 ? (
-        proposals.map((proposal) => (
-          <div key={proposal.publicKey.toString()} className="bg-white p-6 rounded-lg shadow-md">
-            <h3 className="text-xl font-semibold mb-2">{proposal.account.title}</h3>
-            <p className="text-gray-700 mb-4">{proposal.account.description}</p>
-            <div className="space-y-2">
-              {proposal.account.options.map((option: string, index: number) => (
-                <button
-                  key={index}
-                  className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  onClick={() => handleVote(proposal.publicKey, option)}
-                >
-                  Vote for {option}
-                </button>
-              ))}
-            </div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-cover bg-center" style={{ backgroundImage: 'url(https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/9d9875119512883.60b757ed32e4a.gif)' }}>
+      <Navbar />
+      <div className="relative p-12 bg-white bg-opacity-70 rounded-lg shadow-xl max-w-3xl w-full backdrop-blur-md border border-gray-200">
+        {loading ? (
+          <p className="text-gray-700 text-lg text-center">Loading proposals...</p>
+        ) : proposals.length > 0 ? (
+          <div className="space-y-6">
+            {proposals.map((proposal) => (
+              <div key={proposal.publicKey.toString()} className="bg-white bg-opacity-80 p-8 rounded-lg shadow-lg">
+                <h3 className="text-2xl font-semibold mb-4 text-center text-gray-800">{proposal.account.title}</h3>
+                <p className="text-gray-700 mb-6 text-center">{proposal.account.description}</p>
+                <div className="space-y-4">
+                  {proposal.account.options.map((option: string, index: number) => (
+                    <button
+                      key={index}
+                      className="bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      onClick={() => handleVote(proposal.publicKey, option)}
+                    >
+                      Vote for {option}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
-        ))
-      ) : (
-        <p className='text-black'>No proposals available</p>
-      )}
+        ) : (
+          <p className="text-black text-lg text-center">No proposals available</p>
+        )}
+      </div>
     </div>
   );
 };

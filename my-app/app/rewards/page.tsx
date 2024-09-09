@@ -4,7 +4,7 @@ import RewardDashboard from '../components/RewardDashboard';
 const RewardsPage: FC = () => {
   return (
     <div>
-      <h1>My Rewards</h1>
+      {/* <h1>My Rewards</h1> */}
       <RewardDashboard />
     </div>
   );
