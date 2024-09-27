@@ -3,7 +3,7 @@ dao-voting-app/
 │   ├── components/
 │   │   ├── ProposalForm.tsx
 │   │   ├── VotingList.tsx 
-│   │   ├── ResultsDisplay.tsx
+│   │   ├── ResultsDisplay.tsx 
 │   │   ├── RewardDashboard.tsx
 │   │   └── WalletConnect.tsx
 │   ├── proposal/
